@@ -118,26 +118,6 @@ def sendMessage(sender, recipient, message):
 			remove(recipient)
 
 
-def RemoveClient(message, connection, process):
-	if process == 'logout':
-		print 'loggin out'
-		try:
-			connection[0].send(message)
-			connection[2] = ''
-		except:
-			connection[0].close()
-			remove(connection)
-			
-	elif process == 'exit':
-		try:
-			connection[0].send('bye')
-			connection[0].close()
-			remove(connection)
-		except:
-			connection[0].close()
-			remove(connection)
-
-
 def broadcast(message, connection): 
     for clients in list_of_clients: 
         if clients!=connection and clients[2] != '': 
