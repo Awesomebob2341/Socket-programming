@@ -14,7 +14,7 @@ IP_address = str(sys.argv[1])
 Port = int(sys.argv[2])
 server.bind((IP_address, Port))
 
-server.listen(4)
+server.listen(10)
 list_of_clients = [] 
 
 print ('Server online')
@@ -83,12 +83,22 @@ def clientthread(conn, addr):
 						sender[0].send(newMessage) # Notify the user they've logged out
 						sender[2] = ''		   # Set the users name to empty 
 					except:
+						sender[2] = ''
 						sender[0].close()
 						remove(connection)
 		                
 		                elif command == 'exit':
-		                	ReomoveClient(message, connection, command)
-		            		
+		                	newMessage = 'Exiting program'
+					
+					try:
+						sender[0].send(message)
+						sender[2] = ''
+						sender[0].close()
+						remove(connection)
+					except:
+						sender[2] = ''
+						sender[0].close()
+						remove(connection)		            		
 		            else:
 		                remove(conn)
   
