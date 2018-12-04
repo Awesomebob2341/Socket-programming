@@ -78,8 +78,13 @@ def clientthread(conn, addr):
 		                                conn.send(newMessage)
 		                                
 		                elif command == 'logout':
-		                	print 'logging out'
-		                	RemoveClient(message, connection, command)
+		                	newMessage = 'Loggin out'
+					try:
+						sender[0].send(newMessage) # Notify the user they've logged out
+						sender[2] = ''		   # Set the users name to empty 
+					except:
+						sender[0].close()
+						remove(connection)
 		                
 		                elif command == 'exit':
 		                	ReomoveClient(message, connection, command)
