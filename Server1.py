@@ -34,9 +34,6 @@ def clientthread(conn, addr):
 		            			sender = clients
 		            			
 		            	recipient = sender
-		            	logout = False
-		            	exit = False
-		            	
 		            	command = message.split(' ', 1)[0].rstrip()
 		            	
 		            	if command == 'login':
